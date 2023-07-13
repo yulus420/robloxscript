@@ -93,8 +93,7 @@ RunService.RenderStepped:Connect(function()
         TweenService:Create(Camera, TweenInfo.new(_G.Sensitivity, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {CFrame = CFrame.new(Camera.CFrame.Position, GetClosestPlayer().Character[_G.AimPart].Position)}):Play()
     end
 end)
-_G.AimbotEnabled = true
-CoolToggle:Set(true)
+
 	end    
 })
 
