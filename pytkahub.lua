@@ -2,17 +2,19 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Player = game.Players.LocalPlayer
 local Window = OrionLib:MakeWindow({Name = "Key System", HidePremium = false, SaveConfig = false, IntroEnabled = false})
 
-
-
 OrionLib:MakeNotification({
-	Name = "Logged in!",
-	Content = "You are logged in as "..Player.Name..".",
-	Image = "rbxassetid://4483345998",
-	Time = 5
+    Name = "Logged in!",
+    Content = "You are logged in as "..Player.Name..".",
+    Image = "rbxassetid://4483345998",
+    Time = 5
 })
 
-_G.Key = "yulus"
-_G.KeyInput = "string"
+local Keys = {
+    "yulus",
+    "szefunciomuncio9",
+    "nigger"
+}
+local KeyInput = ""
 
 function MakeScriptHub()
     local Window = OrionLib:MakeWindow({Name = "PYTKAHUB", HidePremium = false, SaveConfig = false, IntroEnabled = true, IntroText = "PYTKA HUB"})
@@ -57,7 +59,7 @@ end
 function CorrectKeyNotification()
     OrionLib:MakeNotification({
         Name = "Correct Key!",
-        Content = "You have entered the Correct key!",
+        Content = "You have entered the correct key!",
         Image = "rbxassetid://4483345998",
         Time = 5
     })
@@ -72,7 +74,6 @@ function IncorrectKeyNotification()
     })
 end
 
-
 local Tab = Window:MakeTab({
     Name = "Key",
     Icon = "rbxassetid://4483345998",
@@ -80,27 +81,32 @@ local Tab = Window:MakeTab({
 })
 
 Tab:AddTextbox({
-	Name = "Enter Key",
-	Default = "",
-	TextDisappear = true,
-	Callback = function(Value)
-		_G.KeyInput = Value
-	end	  
+    Name = "Enter Key",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(Value)
+        KeyInput = Value
+    end	  
 })
 
 Tab:AddButton({
-	Name = "Check Key!",
-	Callback = function()
-      	if _G.KeyInput == _G.Key then
-        MakeScriptHub()
-        CorrectKeyNotification()
+    Name = "Check Key!",
+    Callback = function()
+        local keyFound = false
+        for _, key in ipairs(Keys) do
+            if KeyInput == key then
+                keyFound = true
+                break
+            end
+        end
+
+        if keyFound then
+            MakeScriptHub()
+            CorrectKeyNotification()
         else
             IncorrectKeyNotification()
         end
-  	end    
+    end
 })
-
-
-
 
 OrionLib:Init()
