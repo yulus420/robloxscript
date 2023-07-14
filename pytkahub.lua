@@ -29,6 +29,13 @@ function MakeScriptHub()
         Name = "Movement"
     })
     
+    Tab:AddButton({
+	Name = "Fly!",
+	Callback = function()
+      		loadstring(game:HttpGet('https://raw.githubusercontent.com/reversed-coffee/Roblox/main/AEBypassing/CFrameFly.lua'))()
+  	end    
+})
+
     Tab:AddSlider({
         Name = "Walkspeed",
         Min = 16,
